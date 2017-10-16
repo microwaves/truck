@@ -18,6 +18,7 @@ var (
 func init() {
 	flag.StringVar(&target, "target", "", "<host>:<port>")
 	flag.IntVar(&port, "port", 4444, "port")
+	flag.Parse()
 }
 
 func main() {
@@ -36,7 +37,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Could not listen on %d: %v", port, err)
 	}
-	fmt.Printf("Listen on %d\n", port)
+	fmt.Printf("Listening on %d\n", port)
 
 	client, err := incoming.Accept()
 	if err != nil {
