@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: truck
+  labels:
+    app: truck
+spec:
+  template:
+    metadata:
+      labels:
+        app: truck
+    spec:
+      containers:
+        - name: truck
+          image: microwaves/truck:latest
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 4444
+            name: incoming
+            protocol: TCP
+          env:
+            - name: TRUCK_TARGET
+              value: service-host:1337
